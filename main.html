@@ -1,21 +1,72 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Video Speed Scrubber</title>
+  <title>Video Speed Controller</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <div class="wrapper">
-    <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" controls></video>
-    <div class="speed">
-      <div class="speed-bar">1×</div>
+    <video class="video" width="765" height="430" src="https://www.w3schools.com/html/mov_bbb.mp4" controls></video>
+    <div class="controls">
+      <button class="player__button toggle">►</button>
+      <input type="range" class="volume" min="0" max="1" step="0.1" value="1" />
+      <input type="range" class="playbackSpeed" min="0.5" max="2" step="0.1" value="1" />
+      <button class="rewind">« 10s</button>
+      <button class="skip">25s »</button>
+      <div class="progress">
+        <div class="progress__filled"></div>
+      </div>
     </div>
   </div>
 
 <script  src="./script.js">
   //Your code goes here
+	const video = document.querySelector('.video');
+const toggleButton = document.querySelector('.player__button.toggle');
+const volumeInput = document.querySelector('.volume');
+const playbackSpeedInput = document.querySelector('.playbackSpeed');
+const rewindButton = document.querySelector('.rewind');
+const skipButton = document.querySelector('.skip');
+const progressFilled = document.querySelector('.progress__filled');
+
+// Play/Pause functionality
+toggleButton.addEventListener('click', () => {
+  if (video.paused) {
+    video.play();
+    toggleButton.textContent = '❚ ❚'; // Change to pause symbol
+  } else {
+    video.pause();
+    toggleButton.textContent = '►'; // Change to play symbol
+  }
+});
+
+// Volume control
+volumeInput.addEventListener('input', (e) => {
+  video.volume = e.target.value;
+});
+
+// Playback speed control
+playbackSpeedInput.addEventListener('input', (e) => {
+  video.playbackRate = e.target.value;
+});
+
+// Rewind and Skip functionality
+rewindButton.addEventListener('click', () => {
+  video.currentTime -= 10;
+});
+
+skipButton.addEventListener('click', () => {
+  video.currentTime += 25;
+});
+
+// Progress bar
+video.addEventListener('timeupdate', () => {
+  const percent = (video.currentTime / video.duration) * 100;
+  progressFilled.style.width = `${percent}%`;
+});
 </script>
 </body>
 </html>
