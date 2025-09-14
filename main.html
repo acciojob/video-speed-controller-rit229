@@ -40,6 +40,7 @@
     <video class="video" width="765" height="430" src="https://www.w3schools.com/html/mov_bbb.mp4" controls></video>
     <div class="controls">
       <button class="player__button toggle">►</button>
+      <button class="mute">Mute</button>
       <input type="range" class="volume" min="0" max="1" step="0.1" value="1" />
       <input type="range" class="playbackSpeed" min="0.5" max="2" step="0.1" value="1" />
       <button class="rewind">« 10s</button>
@@ -53,6 +54,7 @@
 <script>
   const video = document.querySelector('.video');
   const toggleButton = document.querySelector('.player__button.toggle');
+  const muteButton = document.querySelector('.mute');
   const volumeInput = document.querySelector('.volume');
   const playbackSpeedInput = document.querySelector('.playbackSpeed');
   const rewindButton = document.querySelector('.rewind');
@@ -70,9 +72,17 @@
     }
   });
 
+  // Mute functionality
+  muteButton.addEventListener('click', () => {
+    video.muted = !video.muted;
+    muteButton.textContent = video.muted ? 'Unmute' : 'Mute'; // Change button text
+  });
+
   // Volume control
   volumeInput.addEventListener('input', (e) => {
     video.volume = e.target.value;
+    video.muted = false; // Unmute when changing volume
+    muteButton.textContent = 'Mute'; // Reset mute button text
   });
 
   // Playback speed control
