@@ -1,0 +1,28 @@
+   .wrapper {
+      position: relative;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .progress {
+      background: #ccc;
+      height: 5px;
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .progress__filled {
+      background: #f00;
+      height: 100%;
+      width: 0;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+    }
+
+    .controls button,
+    .controls input {
+      margin-right: 10px;
+    }
