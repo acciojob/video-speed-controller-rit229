@@ -26,54 +26,54 @@
 </div>
 
 <script>
-  const video = document.querySelector('.video');
-  const toggleButton = document.querySelector('.player__button.toggle');
-  const muteButton = document.querySelector('.mute');
-  const volumeInput = document.querySelector('.volume');
-  const playbackSpeedInput = document.querySelector('.playbackSpeed');
-  const rewindButton = document.querySelector('.rewind');
-  const skipButton = document.querySelector('.skip');
-  const progressFilled = document.querySelector('.progress__filled');
+const video = document.querySelector('.video');
+const toggleButton = document.querySelector('.player__button.toggle');
+const muteButton = document.querySelector('.mute');
+const volumeInput = document.querySelector('.volume');
+const playbackSpeedInput = document.querySelector('.playbackSpeed');
+const rewindButton = document.querySelector('.rewind');
+const skipButton = document.querySelector('.skip');
+const progressFilled = document.querySelector('.progress__filled');
 
-  // Play/Pause functionality
-  toggleButton.addEventListener('click', () => {
-    if (video.paused) {
-      video.play();
-      toggleButton.textContent = '❚ ❚'; // Change to pause symbol
-    } else {
-      video.pause();
-      toggleButton.textContent = '►'; // Change to play symbol
-    }
-  });
+// Play/Pause functionality
+toggleButton.addEventListener('click', () => {
+if (video.paused) {
+video.play();
+toggleButton.textContent = '❚ ❚'; // Change to pause symbol
+} else {
+video.pause();
+toggleButton.textContent = '►'; // Change to play symbol
+}
+});
 
-  // Mute functionality
-  muteButton.addEventListener('click', () => {
-    video.muted = !video.muted;
-    muteButton.textContent = video.muted ? 'Unmute' : 'Mute'; // Change button text
-  });
+// Mute functionality
+muteButton.addEventListener('click', () => {
+video.muted = !video.muted;
+muteButton.textContent = video.muted ? 'Unmute' : 'Mute'; // Change button text
+});
 
   // Volume control
-  volumeInput.addEventListener('input', (e) => {
-    video.volume = e.target.value;
-    video.muted = false; // Unmute when changing volume
-    muteButton.textContent = 'Mute'; // Reset mute button text
-  });
+volumeInput.addEventListener('input', (e) => {
+video.volume = e.target.value;
+video.muted = false; // Unmute when changing volume
+muteButton.textContent = 'Mute'; // Reset mute button text
+ });
 
   // Playback speed control
-  playbackSpeedInput.addEventListener('input', (e) => {
-    video.playbackRate = e.target.value;
-  });
+playbackSpeedInput.addEventListener('input', (e) => {
+video.playbackRate = e.target.value;
+});
 
   // Rewind and Skip functionality
-  rewindButton.addEventListener('click', () => {
-    video.currentTime -= 10;
-  });
+rewindButton.addEventListener('click', () => {
+video.currentTime -= 10;
+});
 
-  skipButton.addEventListener('click', () => {
-    video.currentTime += 25;
-  });
+skipButton.addEventListener('click', () => {
+video.currentTime += 25;
+});
 
-  // Progress bar
+// Progress bar
 video.addEventListener('timeupdate', () => {
 const percent = (video.currentTime / video.duration) * 100;
 progressFilled.style.width = `${percent}%`;
